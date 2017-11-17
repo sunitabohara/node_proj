@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  body
+    form(action='/users/new', method='POST')
+      p
+        | Username:
+        input(type='text', name='username', value='')
+        |          status:
+        input(type='text', name='status', value='')
+        | password:
+        input(type='password', name='password', value='')
+        |          email:
+        input(type='text', name='email', value='')
+        |          section:
+        input(type='text', name='section', value='')
+      input(type='submit', value='Submit')

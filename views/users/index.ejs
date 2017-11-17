@@ -1,0 +1,34 @@
+ <% include ../header %>
+ <section id="maincontent" class="inner">
+     <div class="container">
+         <div>
+            <a class="pull-right" href="/register"><i class=" icon-plus"></i>  Register</a>
+         </div>
+             <table class="table table-stripped">
+             <thead>
+             <tr>
+                 <th>Fullname</th>
+                 <th>Email</th>
+                 <th>Username</th>
+                 <th>Address</th>
+                 <th>Actions</th>
+             </tr>
+             </thead>
+             <tbody>
+              <% results.forEach(function(val) { %>
+
+                <tr>
+                    <td><%= val.fullname %> </td>
+                    <td><%= val.email %> </td>
+                    <td> <%= val.username %></td>
+                    <td> <%= val.address %></td>
+                    <td> <a href="/users/edit/<%= val.username %> " title="Edit <%- val.username%>"><i class=" icon-edit"></i></a></td>
+                </tr>
+                <% }); %>
+             </tbody>
+
+         </table>
+     </div>
+ </section> <!-- end maincontent -->
+
+ <% include ../footer %>

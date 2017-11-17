@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  body
+    div
+    - console.log(results)
+    div
+      for user in results
+        form(action='/users/edit/'+user.id, method='POST')
+          p
+            | Username:
+            input(type='text', name='username', value=user.username)
+            |          status:
+            input(type='text', name='status', value=user.status)
+            |          email:
+            input(type='text', name='email', value=user.email)
+            |          section:
+            input(type='text', name='section', value=user.section)
+          input(type='submit', value='Submit')

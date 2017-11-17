@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Express Learning</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- css -->
+	<link href="/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<!-- skin color -->
+	<link href="/color/default.css" rel="stylesheet">
+	<!--[if lt IE 7]>
+    <link href="/css/font-awesome-ie7.css" type="text/css" rel="stylesheet">
+  <![endif]-->
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/img/favicon.ico">
+
+	<!-- =======================================================
+		Theme Name: Maxim
+		Theme URL: https://bootstrapmade.com/maxim-free-onepage-bootstrap-theme/
+		Author: BootstrapMade.com
+		Author URL: https://bootstrapmade.com
+	======================================================= -->
+
+</head>
+
+<body>
+	<!-- navbar -->
+	<div class="navbar-wrapper">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<!-- Responsive navbar -->
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+				</a>
+					<h1 class="brand"><a href="index.html">Express</a></h1>
+					<!-- navigation -->
+					<nav class="pull-right nav-collapse collapse">
+						<ul id="menu-main" class="nav">
+							<li><a title="team" href="/address">Address</a></li>
+							<li><a title="services" href="/users">Users</a></li>
+							<li><a title="works" href="index.html#works">Works</a></li>
+							<li><a title="blog" href="index.html#blog">Blog</a></li>
+							<li><a title="contact" href="index.html#contact">Contact</a></li>
+							<li><a href="page.html">Page </a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% if (locals.flashMsg) { %>
+		<section>
+			<div class="container">
+
+				<!--<div class="container-fluid">-->
+					<% if (flashMsg.success.length > 0){%>
+
+						<% flashMsg.success.forEach(function(m){ %>
+				<br>
+				<br>
+							<div class="alert alert-success alert-dismissable" role="alert">
+								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+									<span><%=m %></span>
+							</div>
+						<% }) %>
+
+					<% } %>
+					<% if (flashMsg.info.length > 0){%>
+						<% flashMsg.info.forEach(function(m){ %>
+				<br>
+				<br>
+							<div class="alert alert-info alert-dismissable" role="alert">
+								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+									<span><%=m %></span>
+							</div>
+						<% }) %>
+					<% } %>
+					<% if (flashMsg.error.length > 0){%>
+						<% flashMsg.error.forEach(function(m){ %>
+				<br>
+				<br>
+							<div class="alert alert-danger alert-dismissable" role="alert">
+								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								<span><%= m %></span>
+							</div>
+						<% }) %>
+					<% } %>
+			</div>
+
+		</section>
+	<% } %>

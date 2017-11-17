@@ -1,0 +1,31 @@
+ <% include ../header %>
+ <section id="maincontent" class="inner">
+     <div class="container">
+         <div>
+            <a class="pull-right" href="/address/new"><i class=" icon-plus"></i>  Address</a>
+         </div>
+             <table class="table table-stripped">
+             <thead>
+             <tr>
+                 <th>State</th>
+                 <th>District</th>
+                 <th>Address</th>
+                 <th>Actions</th>
+             </tr>
+             </thead>
+             <tbody>
+              <% results.forEach(function(val) { %>
+                <tr>
+                    <td><%= val.state %> </td>
+                    <td> <%= val.district %></td>
+                    <td> <%= val.address %></td>
+                    <td> <a href="/address/edit/<%= val.state %>"><i class=" icon-edit"></i></a></td>
+                </tr>
+                <% }); %>
+             </tbody>
+
+         </table>
+     </div>
+ </section> <!-- end maincontent -->
+
+ <% include ../footer %>
