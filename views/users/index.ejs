@@ -21,7 +21,7 @@
                     <td><%= val.fullname %> </td>
                     <td><%= val.email %> </td>
                     <td> <%= val.username %></td>
-                    <td> <%= val.address %></td>
+                    <td> <%= val.address.state +', '+ val.address.district+ ', '+val.address.address %></td>
                     <td> <a href="/users/edit/<%= val.username %> " title="Edit <%- val.username%>"><i class=" icon-edit"></i></a></td>
                 </tr>
                 <% }); %>

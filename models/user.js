@@ -24,9 +24,9 @@ var UserSchema = mongoose.Schema({
     country: {
         type: String,
     },
-    // address: {
-    //     type: String,
-    // },
+    address: {
+        type: String,
+    },
     password: {
         type: String,
         required: true,
@@ -35,10 +35,14 @@ var UserSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    address:{
+   /* address:{
         type: Schema.Types.ObjectId,
          ref: 'addresses'
-    }
+    }*/
+    address: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Address'
+    },
 });
 
 UserSchema.statics.authenticate = function (username, password, callback) {

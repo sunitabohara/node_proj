@@ -14,17 +14,27 @@ var User = require("../models/user");
 connection.connect();
 /* GET users listing. */
 router.get('/',LoginCheck, function(req, res, next) {
- /* connection.query('SELECT * from s1_users where 1=1', function (error, results, fields) {
-    if (error) throw error;
-    res.render('users/index', { results: results });
-  });*/
-  User.find({
+ /* User.find({
 
   }, function(err, results){
-    if(err) console.log(err);
-    else res.render('users/index', { results: results });
+    if(err) {
+        console.log(err);
+    }
+    else {
+        res.render('users/index', { results: results });
+    }
     // else res.send(results);
-  });
+  });*/
+  User.find({ })
+      .populate('address')
+      .exec(function (err, results) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+         return res.render('users/index', { results:results });
+        }
+      })
 });
 router.get('/new', function(req, res, next) {
   // res.send('new user');

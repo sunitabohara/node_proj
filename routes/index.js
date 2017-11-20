@@ -36,6 +36,8 @@ router.get('/register', function(req, res) {
   });
 });
 router.post('/register', function(req, res) {
+// res.send(req.body.address);return
+  console.log(req.body.address);
   var data = new User({
     fullname: req.body.fullname,
     username: req.body.username,
@@ -43,13 +45,13 @@ router.post('/register', function(req, res) {
     address: req.body.address,
     password: req.body.password,
     passwordConf: req.body.passwordConf,
-    address: req.body.address,
+    address: req.body.address.trim()
   });
-
 
   data.save(function (err, result){
     if(err) {
       req.flash('error',err.errmsg);
+      console.log(err);
       return res.redirect('/register');
     }
     else {
