@@ -1,7 +1,6 @@
 /**
- * Created by sunita on 11/10/17.
+ * Created by sunita on 11/21/17.
  */
-
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');

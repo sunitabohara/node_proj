@@ -1,0 +1,33 @@
+ <% include ../header %>
+ <section id="maincontent" class="inner">
+     <div class="container">
+         <div>
+            <a class="pull-right" href="/group/new"><i class=" icon-plus"></i>  add group</a>
+         </div>
+             <table class="table table-stripped">
+             <thead>
+             <tr>
+                 <th>Group Name</th>
+                 <th>Description</th>
+                 <th>Status</th>
+                 <th>Actions</th>
+             </tr>
+             </thead>
+             <tbody>
+             <% results.forEach(function(val) { %>
+             <tr>
+                 <td><%= val.name %> </td>
+                 <td><%= val.description %> </td>
+                 <td><%= val.status %> </td>
+                 <td> <a href="/group/<%- val.name%>/assign-roles"><i class=" icon-lock"></i></a></td>
+                 <td> <a href="/group/<%- val.name%>/edit"><i class=" icon-edit"></i></a></td>
+
+
+             <%})%>
+             </tbody>
+
+         </table>
+     </div>
+ </section> <!-- end maincontent -->
+
+ <% include ../footer %>

@@ -1,6 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql')
+
+var yaml = require('js-yaml');
+var fs   = require('fs');
+var path = require('path');
+var Roles = require("../models/roles");
+var arrayDiff =require("simple-array-diff");
+
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -37,8 +44,42 @@ router.get('/',LoginCheck, function(req, res, next) {
       })
 });
 router.get('/new', function(req, res, next) {
-  // res.send('new user');
-  res.render('users/new');
+
+/*var role = new Roles({
+  name:'createUser',
+  description: 'creates user',
+  section: 'User'
+});
+// Roles.insertMany( doc);
+role.save(function (err,result) {
+  if (err) console.log(err);
+  else res.send(result);
+});*/
+
+  var roles = '/uploads/roles/user.yml';
+  try {
+    var roles = yaml.safeLoad(fs.readFileSync(path.join(__dirname,'/../uploads/roles/user.yml'), 'utf8'));
+    var dbRoles ={};
+    // var dbRoles = Roles.find({'name':'managePermission'});
+   // Roles.insertMany( roles);
+    Roles.find({ }, function(err, results){
+      if(err) {
+        console.log(err);
+      }
+      else {
+        dbRoles = results;
+        //console.log(results)
+      }
+      // else res.send(results);
+    });
+    var difference = arrayDiff(dbRoles,roles);
+  // console.log(dbRoles);
+  console.log(difference);
+    res.send(dbRoles);
+  } catch (e) {
+    console.log(e);
+  }
+
 });
 
 router.post('/new',function (req,res) {

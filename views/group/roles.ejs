@@ -1,0 +1,24 @@
+<% include ../header %>
+<section id="maincontent" class="inner">
+    <div class="container">
+        <div>
+            <a class="pull-right" href="/register"><i class=" icon-plus"></i>  add group</a>
+        </div>
+        <div class="container">
+            <ul>
+                <% results.forEach(function(val) { %>
+
+                <li><strong><%- val._id%></strong></li>
+                <% val.Roles.forEach(function(role) {%>
+                    <ul>
+                        <li><strong><%- role.name%> </strong>  <%- role.description%></li>
+
+                    </ul>
+                <%})%>
+                <%})%>
+            </ul>
+        </div>
+    </div>
+</section> <!-- end maincontent -->
+
+<% include ../footer %>

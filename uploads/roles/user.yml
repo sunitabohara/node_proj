@@ -1,0 +1,13 @@
+# User permissions
+- { name: "viewUser", description: "view users", section: "User & Groups" }
+- { name: "addUser", description: "create new user", section: "User & Groups" }
+- { name: "editUser", description: "edit user", section: "User & Groups" }
+- { name: "deleteUser", description: "delete user", section: "User & Groups" }
+- { name: "resetPassword", description: "reset user password", section: "User & Groups" }
+
+# Group permissions
+- { name: "viewGroup", description: "view user groups", section: "User & Groups" }
+- { name: "addGroup", description: "create new user groups", section: "User & Groups" }
+- { name: "editGroup", description: "edit user groups", section: "User & Groups" }
+- { name: "deleteGroup", description: "delete user groups", section: "User & Groups" }
+- { name: "managePermission", description: "manage user group permissions", section: "User & Groups" }

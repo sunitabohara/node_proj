@@ -18,7 +18,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var index = require('./routes/index');
 var address = require('./routes/address');
 var users = require('./routes/users');
-var account = require('./models/account');
+var group = require('./routes/group');
 var app = express();
 
 
@@ -70,6 +70,7 @@ app.use(function(req, res, next) {
 app.use('/', index);
 app.use('/users', users);
 app.use('/address', address);
+app.use('/group', group);
 
 
 // passport config
