@@ -13,15 +13,44 @@ var router = express.Router();
 
 var Address = require("../models/address");
 var User = require("../models/user");
+var Group = require("../models/group");
 var LoginCheck = require("../middleware/loginCheck");
 var promise = require('promise');
 // router.use(LoginCheck);
 router.get('/', LoginCheck,function (req, res) {
- // res.send('register');
-  res.render('index', { title :'hello ejs' });
+   res.render('index', { title :'hello ejs' });
 });
 
-router.get('/register', function(req, res) {
+router.get('/register', function(req, res,next) {
+
+  Group.find({
+  }, function(err, result){
+    if(err) {
+      req.flash('error',err.errmsg);
+      console.log(err);
+      return res.redirect('/address')
+    }
+    res.group=result;
+    next()
+   // res.render('register', {address:result });
+  });
+
+},function(req,res,next){
+  Address.find({
+  }, function(err, result){
+    if(err) {
+      req.flash('error',err.errmsg);
+      console.log(err);
+      return res.redirect('/address')
+    }
+    res.address=result;
+    next()
+   // res.render('register', {address:result ,group:res.group});
+  });
+},function (req,res) {
+  res.render('register', {address:res.address ,group:res.group});
+});
+router.get('/register1', function(req, res) {
 
   var address  = {};
   Address.find({
@@ -36,7 +65,7 @@ router.get('/register', function(req, res) {
   });
 });
 router.post('/register', function(req, res) {
-// res.send(req.body.address);return
+// res.send(req.body);return
   console.log(req.body.address);
   var data = new User({
     fullname: req.body.fullname,
@@ -45,7 +74,8 @@ router.post('/register', function(req, res) {
     address: req.body.address,
     password: req.body.password,
     passwordConf: req.body.passwordConf,
-    address: req.body.address.trim()
+    address: req.body.address.trim(),
+    group: req.body.group.trim()
   });
 
   data.save(function (err, result){
@@ -79,6 +109,7 @@ router.post('/login',function (req,res,next) {
       } else {
         req.session.userId = user._id;
         req.session.username = user.username;
+        req.session.user = user;
         req.session.authenticated = true;
         return res.redirect('/');
       }

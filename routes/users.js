@@ -16,24 +16,14 @@ var connection = mysql.createConnection({
 });
 
 var LoginCheck = require("../middleware/loginCheck");
+var Permission = require("../middleware/permission");
 var User = require("../models/user");
 
 connection.connect();
 /* GET users listing. */
 router.get('/',LoginCheck, function(req, res, next) {
- /* User.find({
-
-  }, function(err, results){
-    if(err) {
-        console.log(err);
-    }
-    else {
-        res.render('users/index', { results: results });
-    }
-    // else res.send(results);
-  });*/
   User.find({ })
-      .populate('address')
+      .populate('address').populate('group','name')
       .exec(function (err, results) {
         if (err) {
           console.log(err);
@@ -55,30 +45,7 @@ role.save(function (err,result) {
   if (err) console.log(err);
   else res.send(result);
 });*/
-
-  var roles = '/uploads/roles/user.yml';
-  try {
-    var roles = yaml.safeLoad(fs.readFileSync(path.join(__dirname,'/../uploads/roles/user.yml'), 'utf8'));
-    var dbRoles ={};
-    // var dbRoles = Roles.find({'name':'managePermission'});
-   // Roles.insertMany( roles);
-    Roles.find({ }, function(err, results){
-      if(err) {
-        console.log(err);
-      }
-      else {
-        dbRoles = results;
-        //console.log(results)
-      }
-      // else res.send(results);
-    });
-    var difference = arrayDiff(dbRoles,roles);
-  // console.log(dbRoles);
-  console.log(difference);
-    res.send(dbRoles);
-  } catch (e) {
-    console.log(e);
-  }
+  
 
 });
 

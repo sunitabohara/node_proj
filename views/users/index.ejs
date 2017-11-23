@@ -10,17 +10,18 @@
                  <th>Fullname</th>
                  <th>Email</th>
                  <th>Username</th>
+                 <th>Group</th>
                  <th>Address</th>
                  <th>Actions</th>
              </tr>
              </thead>
              <tbody>
               <% results.forEach(function(val) { %>
-
                 <tr>
                     <td><%= val.fullname %> </td>
                     <td><%= val.email %> </td>
                     <td> <%= val.username %></td>
+                    <td> <%= val.group.name %></td>
                     <td> <%= val.address.state +', '+ val.address.district+ ', '+val.address.address %></td>
                     <td> <a href="/users/edit/<%= val.username %> " title="Edit <%- val.username%>"><i class=" icon-edit"></i></a></td>
                 </tr>

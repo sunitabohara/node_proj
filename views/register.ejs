@@ -9,8 +9,7 @@
             <%}%>
         </ul>
         <%}%>
-
-
+        
         <div class="col-xs-12  col-md-8">
             <form class="form-horizontal" action="" method="post">
                 <div class="form-group row">
@@ -42,11 +41,28 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-2">
+                        <label>Group</label>
+                    </div>
+                    <div class="col-sm-10">
+                        <!--<input type="text" class="form-control col-sm-" name="address">-->
+                        <select name="group">
+                            <option value="">Select Group</option>
+                            <% if(group){%>
+                            <% group.forEach(function(g){ %>
+                            <option value=" <%- g._id %>"> <%- g.name %></option>
+                            <%})}%>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2">
                         <label>Address</label>
                     </div>
                     <div class="col-sm-10">
                         <!--<input type="text" class="form-control col-sm-" name="address">-->
                         <select name="address">
+                            <option value="">Select Address</option>
                             <% if(address){%>
                             <% address.forEach(function(m){ %>
                             <option value=" <%- m._id %>"> <%- m.address %></option>

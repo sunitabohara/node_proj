@@ -1,12 +1,27 @@
-export default function permit(allowed) {
-    const isAllowed = role => allowed.indexOf(role) > -1;
+/**
+ * Created by sunita on 11/15/22.
+ */
+var Group = require("../models/group");
 
-    // return a middleware
-    return (req, res, next) => {
-        if (req.user && isAllowed(req.user.role))
-            next(); // role is allowed, so continue on the next middleware
-        else {
-            response.status(403).json({message: "Forbidden"}); // user is forbidden
-        }
-    }
+
+module.exports =  function  HasRole(role) {
+    return HasRole[role] || (HasRole[role] = function(req, res, next) {
+            Group.find({_id:req.session.user.group},{roles:1},function(err,result){
+                if(!err){
+                    var roles = result[0].roles;
+                    if(roles.indexOf(role) > -1){
+                        return next();
+                    }
+
+                   else {
+                        req.flash("error", "Access Denied.");
+                        return res.redirect(req.originalUrl);
+                    }
+                }else{
+                    req.flash("error", err.message);
+                    console.log(err);
+                    return res.redirect(req.originalUrl);
+                }
+            });
+        })
 }

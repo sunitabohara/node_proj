@@ -35,10 +35,11 @@ var UserSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-   /* address:{
-        type: Schema.Types.ObjectId,
-         ref: 'addresses'
-    }*/
+    group: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Group',
+        required: true,
+    },
     address: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Address'
